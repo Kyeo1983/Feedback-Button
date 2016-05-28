@@ -18,8 +18,8 @@ See a demo <a href="http://codepen.io/Kyeo1983/full/vKBjyQ" target="_blank">here
 Usage
 ======
 
-Because this plugin makes use of FancyBox and Toastr to create its default message box and notification, you have to first import these two plugins.
-The plugins can be found at http://fancybox.net/ and at https://github.com/CodeSeven/toastr. Credits to these sources for these tools.
+Because this plugin makes use of <a href="http://fancybox.net/" target="_blank">FancyBox</a> and <a href="https://github.com/CodeSeven/toastr" target="_blank">Toastr</a> to create its default message box and notification, you have to first import these two plugins.
+Credits to these sources for these tools.
 Next, import feedback.css and feedback.js for the base feedback content, 
 To start using it, add this HTML &lt;div&gt; to your page:     &lt;div class="feedback"&gt;&lt;/div&gt;
 And then run feedback._init() on Javascript.
