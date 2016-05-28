@@ -1,0 +1,100 @@
+<!-- 3rd party toolkits -->
+<!-- FontAwesome for the icons, essential for base feedback button -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<!-- JQuery -->
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<!-- FancyBox : the popup input box on click of feedback button
+	Credits to http://fancybox.net/
+ -->
+<link rel="stylesheet" href="https://kyresource.herokuapp.com/resources/fancyBox/source/jquery.fancybox.css">
+<script type="text/javascript" src="https://kyresource.herokuapp.com/resources/fancyBox/source/jquery.fancybox.pack.js"></script>
+<!-- Toastr : A toast notification plugin
+	Credits to https://github.com/CodeSeven/toastr
+-->
+<link rel="stylesheet" href="http://codeseven.github.io/toastr/build/toastr.min.css">
+<script type="text/javascript" src="http://codeseven.github.io/toastr/build/toastr.min.js"></script>
+
+
+
+<!-- Feedback Plugin -->
+<link rel="stylesheet" href="feedback.css">
+<script type="text/javascript" src="feedback.js"></script>
+
+
+
+<div id="myFD" class="feedback"></div>
+<div id="myFDBlue" class="feedback"
+	  p-shake-interval="5000"
+	  p-bg-color="#1D4DDD"
+	  p-bg-alt-color="#4B83E7"
+	  p-item-bg-color="#144BCC"
+	  p-right="560px"
+	  p-bottom="200px"
+	  p-box-right="540px"
+	  p-box-bottom="260px"
+></div>
+<div id="myFDGreen" class="feedback"
+	  p-shake-interval="1000"
+	  p-bg-color="#61ED81"
+	  p-bg-alt-color="#4BE776"
+	  p-item-bg-color="#14CC2C"
+	  p-right="200px"
+	  p-bottom="300px"
+	  p-box-right="180px"
+	  p-box-bottom="360px"
+></div>
+
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+	
+feedback._init();
+
+
+
+
+feedback.addPosFeedback('#myFD', 'Creating a normal positive button', 'Glad that you like it!', 'Thank you'); 
+feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tell me more?', 500, 'Your feedback is well received!'); 
+feedback.addMsgFeedback('#myFD', 'Message us', function() {
+		feedback.createMessageBox('#myFD', 'Thank you for helping us improve', 500, 
+			function(msg) { 
+				feedback.createNotification(msg, 'Your feedback is well received!'); 
+			} 
+		); 
+	}
+);
+
+feedback.addItem('#myFDBlue', 'check-circle-o', 'Group your items, say this is "A"', 'A', 
+					 function() { alert('Click "Remove A" to remove A group of buttons.') });
+feedback.addItem('#myFDBlue', 'check-circle-o', 'Say this is "A" too', 'A', 
+					 function() { alert('Click "Remove A" to remove A group of buttons.') });
+feedback.addItem('#myFDBlue', 'trash', 'Remove "A"', 'A-rmv', 
+					 function() { feedback.removeItemsInSet('#myFDBlue', 'A') });
+
+
+feedback.addMsgFeedback('#myFDGreen', 'Use our standard message box', 
+	function() { 
+		feedback.createMessageBox('#myFDGreen', 'Credits to Fancybox!', 500, 
+			function(msg) { 
+				feedback.createNotification(msg, 'Your Title Here...'); 
+			} 
+		); 
+	} 
+);
+feedback.addMsgFeedback('#myFDGreen', 'Message box with your own action', 
+	function() { 
+		feedback.createMessageBox('#myFDGreen', 'Credits to Fancybox!', 500, 
+			function(msg) { 
+				alert('Message typed is captured : "' + msg + '"');
+			} 
+		); 
+	} 
+);
+feedback.addMsgFeedback('#myFDGreen', 'Customize your own callback', 
+	function() { 
+		alert('Do anything you want here');
+	} 
+);
+	});
+</script>

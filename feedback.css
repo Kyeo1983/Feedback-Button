@@ -1,0 +1,158 @@
+.feedback {
+	z-index: 999;
+	background-color: #DD231D;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+   position: fixed;
+	right: 40px;
+	bottom: 20px;
+	-webkit-transition: 0.6s;
+   transition: 0.6s;
+}
+.feedback:hover {
+	cursor: pointer;
+	background-color: #E7504B;
+   -webkit-transform: scale(1.1, 1.1);
+   transform: scale(1.1, 1.1);
+   -webkit-transform: background-color 0.5s ease;
+   transform: background-color 0.5s ease;
+}
+.feedback .fa {
+	/* horizontally-center item */
+	text-align: center;
+	width: 100%;
+
+	/* vertically-center item 	*/
+	height: 100%;
+	line-height: 50px;
+	
+	/* item properties */
+	font-size: 25px;	
+	color: white;
+
+	/* animations */
+   -webkit-transition: 0.6s;
+   transition: 0.6s;
+}
+.feedback:hover .fa {	
+   -webkit-transition: 0.6s;
+   transition: 0.6s;
+   -webkit-transform: rotateY(360deg);
+   transform: rotateY(360deg);
+}
+
+
+.feedback-box {
+	z-index: 999;
+	width: 200px;
+	border-radius: 10px;
+	background-color: #DD231D;
+   position: fixed;
+	bottom: 80px;
+	right: 20px;
+	padding: 2px;
+}
+.feedback-box .feedback-segment {
+	margin: 2px;
+	height: 50px;
+	background-color: #CC1A14;
+	padding: 2px;
+	line-height:25px;
+	font-family: "Segoe UI";
+	font-size: 1em;
+	color: white;
+}
+.feedback-box .feedback-segment.first {
+	border-radius: 10px 10px 0px 0px;
+}
+.feedback-box .feedback-segment.last {
+	border-radius: 0px 0px 10px 10px;
+}
+.feedback-box .feedback-segment i {
+	width: 25%;
+	line-height: 50px;
+	float: left;
+	font-size: 40px;
+	margin-left: 5px;
+	color: white;
+}
+.feedback-box .feedback-segment:hover {
+	background-color: #E7504B;
+	cursor: pointer;
+}
+	
+	
+/* Credit shake code to sdras on codepen */
+.feedback.shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+/***************************
+Buttons
+***************************/
+.ph-button {
+    border-style: solid;
+    border-width: 0px 0px 3px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+    color: #FFFFFF;	   
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    font-style: normal;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    transition: all 200ms ease-in-out 0s;
+    white-space: nowrap;	
+    font-family: Arial,sans-serif;
+    font-weight: 300;	
+    padding: 5px 10px 4px;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+.ph-button:active {
+	position:relative;
+	top:1px;
+}
+/***************************
+Buttons - Green
+***************************/
+.ph-btn-green {
+    border-color: #3AC162;
+	background-color: #5FCF80;
+}
+.ph-btn-green:hover, .ph-btn-green:focus, .ph-btn-green:active {
+    background-color: #4BC970;
+    border-color: #3AC162;    
+}
+/***************************
+Buttons - Red
+***************************/
+.ph-btn-red {
+    background-color: #ED5A5A !important;
+    border-color: #EA4343 !important;
+}
+.ph-btn-red:hover, .ph-btn-red:focus, .ph-btn-red:active {
+    background: none repeat scroll 0 0 #EB4848 !important;
+    border-color: #E83131 !important;    
+}
