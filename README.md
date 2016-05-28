@@ -4,22 +4,25 @@ Feedback Button
 Quick and easy way to plug in a feedback button with customizable feedback menu items.
 Comes with it a default message box for text inputs and is able to take callbacks to handle feedback submission event.
 
-<img src="https://github.com/Kyeo1983/Scoreboard_Numbers/blob/master/sample/scoreboard.gif"/>
+<img src="https://github.com/Kyeo1983/"/>
 
 
 
 Demo
 =====
 
-See a demo <a href="http://codepen.io/Kyeo1983/full/KwbBYW" target="_blank">here</a>.
+See a demo <a href="http://codepen.io/Kyeo1983/full/vKBjyQ" target="_blank">here</a>.
 
 
 
 Usage
 ======
 
-Add this HTML &lt;div&gt; to your page:     &lt;div class="scorer"&gt;&lt;/div&gt;
-And import scoreboard.css and scoreboard.js for the content to initialise.
+Because this plugin makes use of FancyBox and Toastr to create its default message box and notification, you have to first import these two plugins.
+The plugins can be found at http://fancybox.net/ and at https://github.com/CodeSeven/toastr. Credits to these sources for these tools.
+Next, import feedback.css and feedback.js for the base feedback content, 
+To start using it, add this HTML &lt;div&gt; to your page:     &lt;div class="feedback"&gt;&lt;/div&gt;
+And then run feedback._init() on Javascript.
 
 
 Customization
