@@ -111,36 +111,49 @@ feedback.addItem('#myFD', 'check-circle-o', 'Some Text', 'grpName',
 API
 =======
 
-*** createMessageBox
+### createMessageBox
 Creates standard message box. Standard message box will remove all feedback items under set "main".
 The selector parameter "e" is needed only for this purpose, otherwise, it is ok to leave it blank.
 ```
-createMessageBox = function(e, title, charlimit, callback) 
-
+feedback.createMessageBox(e, title, charlimit, callback) 
 e 				:		A feedback jQuery element or selector to it
 title 			: 		Title of this message box
 charlimit 		:		Character limit of the text area in this box
 callback(msg) 	:		Callback to execute when Send button is clicked, it will be given one parameter that is the text from textarea in message box. 
 ```
 
-		
-		
-		/**********************************************
-		* Creates a popup box showing message
-		* 		msg : Message to show
-		* 		title : Title of this message
-		***********************************************/
-		this.createNotification = function(msg, title)
-		
-		
-		/*****************************************
-		* Adds new click item with Tick/Cross/Mail icon to feedback box.
+### createNotification
+Creates a popup (toast) box showing message.
+```
+feedback.createNotification(msg, title)
+msg 			:		Message to show
+title 			: 		Title of this message
+```
+
+### addPosFeedback
+Adds new click item with Tick icon to feedback box. Generally used to receive a quick positive response with no need for any additional inputs. Customize its callback for any actions neccessary to record this feedback.
+```
+feedback.addPosFeedback(e, text, msg, title, callback)
+e				:		A feedback jQuery element or selector to it
+text			:		Message on the item
+title 			: 		Title on notification
+callback	 	:		Callback to execute when this feedback item is clicked. No additional parameter is given.
+```
+Example
+```javascript
+feedback.addPosFeedback(
+	'#myFD', 'Creating a normal positive button', 
+	'Glad that you like it!', 'Thank you', 
+	function() { alert('You can call AJAX here.'); }
+); 
+```
+
 		* 		e : A feedback jQuery element or selector to it
 		* 		text : Message on the item
 		*		set : Allocate this item to a set name, you can then later delete all buttons in this set in a single function.
 		* 		callback : callback upon click on this item
 		*****************************************/
-		this.addPosFeedback = function(e, text, msg, title)
+		this.addPosFeedback = function
 		this.addNegFeedback = function(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle)
 		this.addMsgFeedback = function(e, text, callback)
 		this.addItem = function(e, icon_code, text, set, callback)
