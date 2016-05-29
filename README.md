@@ -19,7 +19,7 @@ Usage
 ======
 
 Because this plugin makes use of <a href="http://fancybox.net/" target="_blank">FancyBox</a> and <a href="https://github.com/CodeSeven/toastr" target="_blank">Toastr</a> to create its default message box and notification, you have to first import these two plugins.
-Credits to these sources for these tools.
+Credits to the above sources for these tools.
 
 Next, import feedback.css and feedback.js for the base feedback content, 
 To start using it, add this HTML &lt;div&gt; to your page:     &lt;div class="feedback"&gt;&lt;/div&gt;
@@ -43,3 +43,31 @@ Set attributes to the &lt;div&gt; tag to configure the feedback button.
 |p-bottom  | Absolute bottom of button positioning of button from window | 200px|
 |p-box-right  | Absolute right of box positioning of button from window | 540px|
 |p-box-bottom  | Absolute bottom of box positioning of button from window | 260px|
+
+
+
+Example
+======
+
+Below are some examples of the customizations you can do to the feedback button.
+These examples work off a sample feedback &lt;div&gt; tag with id="myFD" and assume that feedback._init() has been ran to initialize the plugin.
+
+Creating a positive feedback item with just a toast alert upon click.
+------
+Call addPosFeedback method and pass a selector to the feedback button, a text for the menu, the message in toast upon click and the title to the toast.
+```javascript
+feedback.addPosFeedback('#myFD', 'Creating a normal positive button', 'Glad that you like it!', 'Thank you'); 
+```
+<img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/addPosFeedback.gif"/>
+
+
+feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tell me more?', 500, 'Your feedback is well received!'); 
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
+
+API
+===============
