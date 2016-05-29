@@ -27,7 +27,7 @@ Next, import feedback.css and feedback.js for the base feedback content,
 To start using it, add this HTML &lt;div&gt; to your page:     **&lt;div class="feedback"&gt;&lt;/div&gt;**
 And then run **feedback._init()** on Javascript.
 
-If you do not require the default message box nor notification feature, then just import feedback-plain.css and feedback-plain.js.
+If you do not require the default message box nor notification feature, then import *feedback-plain.js* instead of *feedback.js*.
 
 
 ### Concept
@@ -117,12 +117,12 @@ Use this group feature to tag certain options to groups, and then collectively r
 Tagging the item is done during definition, and removal is done by a callback to *feedback.removeItemsInSet*.
 See API for more details of this call.
 ```javascript
-feedback.addItem('#myFDBlue', 'check-circle-o', 'Group your items, say this is "A"', 'A', 
+feedback.addItem('#myFD', 'check-circle-o', 'Group your items, say this is "A"', 'A', 
 					 function() { alert('Click "Remove A" to remove A group of buttons.') });
-feedback.addItem('#myFDBlue', 'check-circle-o', 'Say this is "A" too', 'A', 
+feedback.addItem('#myFD', 'check-circle-o', 'Say this is "A" too', 'A', 
 					 function() { alert('Click "Remove A" to remove A group of buttons.') });
-feedback.addItem('#myFDBlue', 'trash', 'Remove "A"', 'A-rmv', 
-					 function() { feedback.removeItemsInSet('#myFDBlue', 'A') });
+feedback.addItem('#myFD', 'trash', 'Remove "A"', 'A-rmv', 
+					 function() { feedback.removeItemsInSet('#myFD', 'A') });
 ```
 <img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/grpdemo.gif"/>
 

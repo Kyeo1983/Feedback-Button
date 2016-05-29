@@ -104,9 +104,9 @@ var feedback = feedback || {};
 		* Creates a popup box showing message
 		* 		msg : Message to show
 		* 		title : Title of this message
+		* NOT AVAILABLE IN THIS PLAIN VERSION
 		***********************************************/
 		this.createNotification = function(msg, title) {
-			toastr.info(msg, title);
 		}
 			
 		
@@ -119,36 +119,9 @@ var feedback = feedback || {};
 		* 		charlimit : Character limit of the text area in this box
 		* 		callback(msg) : Callback to execute when Send button is clicked, it will be given one
 		*								parameter that is the text from textarea in message box. 
+		* NOT AVAILABLE IN THIS PLAIN VERSION
 		***********************************************/
 		this.createMessageBox = function(e, title, charlimit, callback) {
-			charlimit = charlimit || 2000;
-			var msgBox = jQuery('<div>'
-			   + '<div class="feedback-message-box">'
-				+ '	<h2 style="margin:0;">' + title + '</h2><br/>'
-				+ '	<textarea maxlength="' + charlimit + '" rows="4" style="padding:5px; width:485px"></textarea><br/>'
-				+ '	<span style="font-size:smaller;"><em>Character limit: ' + charlimit + '</em></span>'
-				+ '	<div style="overflow:hidden;">'
-				+ '		<button style="float:right; margin:2px 5px;" class="ph-button ph-btn-green" onclick="jQuery.fancybox.close();">Send</button>'
-				+ '		<button style="float:right; margin:2px 5px;" class="ph-button ph-btn-red" onclick="jQuery.fancybox.close();">Cancel</button>'
-				+ '	</div></div></div>');
-			jQuery.fancybox(msgBox.html(), {
-				closeBtn: true,
-				minWidth: 500,
-				maxWidth: 700,
-				showCloseButton: true
-			});
-			
-			/* Create character limit counter */
-			jQuery('.feedback-message-box textarea').keyup(function() {
-				var newCnt = charlimit - jQuery(this).eq(0).val().length;
-				jQuery(this).closest('div').find('span > em').text('Character limit: ' + newCnt);
-			});
-			
-			/* Initialise Send button click action */
-			jQuery('.feedback-message-box .ph-btn-green').click(function(){
-				removeItemsInSet(e, 'main');
-				if (callback) callback(jQuery('.feedback-message-box textarea').val());
-			});
 		}
 		
 		
@@ -199,31 +172,6 @@ var feedback = feedback || {};
 		* 		callback : callback upon click on this item
 		*****************************************/
 		this.addItem = function(e, icon_code, text, set, callback) { baseAddItem(e, icon_code, text, set, callback); }
-		this.addPosFeedback = function(e, text, msg, title, callback) { baseAddItem(e, 'check', text, 'main', function() { 
-			callback();
-			feedback.createNotification(msg, title);
-			feedback.removeItemsInSet(e, 'main');
-		} ); }
-		this.addNegFeedback = function(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle, notifyMsg, callback) { baseAddItem(e, 'times', text, 'main',
-			function() {
-				feedback.createMessageBox(e, msgboxTitle, msgBoxCharLimit, 
-					function(msg) {
-						callback(msg);
-						feedback.createNotification(notifyMsg || msg, notifyTitle); 
-					} 
-				); 
-			}
-		); }
-		this.addMsgFeedback = function(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle, notifyMsg, callback) { baseAddItem(e, 'envelope', text, 'not-main',
-			function() {
-				feedback.createMessageBox(e, msgboxTitle, msgBoxCharLimit, 
-					function(msg) {
-						callback(msg);
-						feedback.createNotification(notifyMsg || msg, notifyTitle); 
-					} 
-				); 
-			}
-		); }
 		
 		
 		/*****************************************

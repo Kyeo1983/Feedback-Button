@@ -54,16 +54,11 @@ feedback._init();
 
 
 
-feedback.addPosFeedback('#myFD', 'Creating a normal positive button', 'Glad that you like it!', 'Thank you'); 
-feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tell me more?', 500, 'Your feedback is well received!'); 
-feedback.addMsgFeedback('#myFD', 'Message us', function() {
-		feedback.createMessageBox('#myFD', 'Thank you for helping us improve', 500, 
-			function(msg) { 
-				feedback.createNotification(msg, 'Your feedback is well received!'); 
-			} 
-		); 
-	}
-);
+feedback.addPosFeedback('#myFD', 'Creating a normal positive button', 'Glad that you like it!', 'Thank you', function() { alert('You can call AJAX here.'); }); 
+feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tell me more?', 500, 'Your feedback is well received!', 'Thanks', 
+		function(textboxmsg) { alert('You can call AJAX here with text box msg : ' + textboxmsg); } ); 
+feedback.addMsgFeedback('#myFD', 'Message us', 'Thank you for helping us improve', 500, 'Your feedback is well received!', 'Thanks', 
+		function(textboxmsg) { alert('You can call AJAX here with text box msg : ' + textboxmsg); } ); 
 
 feedback.addItem('#myFDBlue', 'check-circle-o', 'Group your items, say this is "A"', 'A', 
 					 function() { alert('Click "Remove A" to remove A group of buttons.') });
@@ -73,25 +68,15 @@ feedback.addItem('#myFDBlue', 'trash', 'Remove "A"', 'A-rmv',
 					 function() { feedback.removeItemsInSet('#myFDBlue', 'A') });
 
 
-feedback.addMsgFeedback('#myFDGreen', 'Use our standard message box', 
-	function() { 
-		feedback.createMessageBox('#myFDGreen', 'Credits to Fancybox!', 500, 
-			function(msg) { 
-				feedback.createNotification(msg, 'Your Title Here...'); 
-			} 
-		); 
+feedback.addMsgFeedback(
+ 	'#myFDGreen', 'Use our standard message box', 
+ 	'Credits to Fancybox!', 500,
+ 	'Your Title Here...', '',
+	function(msg) { 
+		alert('You can call AJAX here with msg: ' + msg)
 	} 
 );
-feedback.addMsgFeedback('#myFDGreen', 'Message box with your own action', 
-	function() { 
-		feedback.createMessageBox('#myFDGreen', 'Credits to Fancybox!', 500, 
-			function(msg) { 
-				alert('Message typed is captured : "' + msg + '"');
-			} 
-		); 
-	} 
-);
-feedback.addMsgFeedback('#myFDGreen', 'Customize your own callback', 
+feedback.addItem('#myFDGreen', 'crosshairs', 'Customize your own callback', 'setA',
 	function() { 
 		alert('Do anything you want here');
 	} 
