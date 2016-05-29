@@ -135,7 +135,8 @@ Adds new click item with Tick icon to feedback box. Generally used to receive a 
 ```
 feedback.addPosFeedback(e, text, msg, title, callback)
 e				:		A feedback jQuery element or selector to it
-text			:		Message on the item
+text			:		Text on feedback item
+msg				:		Message on notification
 title 			: 		Title on notification
 callback	 	:		Callback to execute when this feedback item is clicked. No additional parameter is given.
 ```
@@ -148,13 +149,35 @@ feedback.addPosFeedback(
 ); 
 ```
 
+
+### addNegFeedback
+Adds new click item with Cross icon to feedback box. Generally used to receive a negative response that launches the default message box to receive additional inputs. Customize its callback for any actions neccessary to record this feedback.
+```
+feedback.addNegFeedback(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle, notifyMsg, callback))
+e				:		A feedback jQuery element or selector to it
+text			:		Text on feedback item
+msgboxTitle		:		Title on message box
+msgBoxCharLimit	:		Character limit for input on message box
+notifyTitle		: 		Title on notification
+notifyMsg		:		Message on notification, leave it blank to repeat the input received on message box
+callback(msg) 	:		Callback to execute when "Send" button on message box is clicked. It will be given one parameter that is the text from textarea in message box.
+```
+Example
+```javascript
+feedback.addNegFeedback(
+	'#myFD', 'Standard dislike button', 
+	'Sorry about it, tell me more?', 500, 
+	'Your feedback is well received!', 'Thanks', 
+	function(textboxmsg) { alert('You can call AJAX here with text box msg : ' + textboxmsg); } 
+); 
+```
+
 		* 		e : A feedback jQuery element or selector to it
 		* 		text : Message on the item
 		*		set : Allocate this item to a set name, you can then later delete all buttons in this set in a single function.
 		* 		callback : callback upon click on this item
 		*****************************************/
-		this.addPosFeedback = function
-		this.addNegFeedback = function(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle)
+		this. = function
 		this.addMsgFeedback = function(e, text, callback)
 		this.addItem = function(e, icon_code, text, set, callback)
 		
