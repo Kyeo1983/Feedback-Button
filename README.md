@@ -18,6 +18,8 @@ See a demo <a href="http://codepen.io/Kyeo1983/full/vKBjyQ" target="_blank">here
 Usage
 ======
 
+Getting Started
+------
 Because this plugin makes use of <a href="http://fancybox.net/" target="_blank">FancyBox</a> and <a href="https://github.com/CodeSeven/toastr" target="_blank">Toastr</a> to create its default message box and notification, you have to first import these two plugins.
 Credits to the above sources for these tools.
 
@@ -26,6 +28,14 @@ To start using it, add this HTML &lt;div&gt; to your page:     &lt;div class="fe
 And then run feedback._init() on Javascript.
 
 If you do not require the default message box nor notification feature, then just import feedback-plain.css and feedback-plain.js.
+
+
+Concept
+------
+You can have multiple feedback buttons on your screen, they operate independantly (though I don't see a reason to have many of them).
+After initializing the feedback plugin, use the native functions to attach menu items to the feedback button.
+You can define each menu item's text and after-click actions by passing in callbacks during definition.
+We provide native functions to create default message box and toast notifications if you include the above 3rd party plugins.
 
 
 Customization
@@ -52,7 +62,7 @@ Examples
 Below are some examples of the customizations you can do to the feedback button.
 These examples work off a sample feedback &lt;div&gt; tag with id="myFD" and assume that feedback._init() has been ran to initialize the plugin.
 
-Creating a positive feedback item with just a toast alert upon click
+Creating a positive feedback item with just a toast alert
 ------
 Call addPosFeedback method and pass a selector to the feedback button, a text for the menu, the message in toast upon click and the title to the toast.
 Default positive feedback item is grouped with the default negative feedback item. Clicking one of which will close off both options thereafter (nobody feedbacks positively and negatively at the same time right?).
@@ -63,7 +73,7 @@ feedback.addPosFeedback('#myFD', 'Creating a normal positive button', 'Glad that
 <img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/addPosFeedback.gif"/>
 
 
-Creating a positive feedback item with just a toast alert upon click
+Creating a negative feedback item with message box and a toast alert
 ------
 Call addNegFeedback method and pass a selector to the feedback button, a text for the menu, the heading in message box, character limit for message box and the title to the toast.
 Default negative feedback item is grouped with the default positive feedback item. Clicking one of which will close off both options thereafter (explained above in positive feedback section).
@@ -72,6 +82,22 @@ See API for more details of this call.
 feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tell me more?', 500, 'Your feedback is well received!'); 
 ```
 <img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/standard.gif"/>
+
+
+Creating a contact us feedback item with message box and a toast alert
+------
+Call addMsgFeedback method and give a callback to define actions upon click. In this example, we make use of a native function to create the default message box and toast alerts.
+See API for more details of this call.
+```javascript
+feedback.addMsgFeedback('#myFD', 'Message us', function() {
+		feedback.createMessageBox('#myFD', 'Thank you for helping us improve', 500, 
+			function(msg) { 
+				feedback.createNotification(msg, 'Your feedback is well received!'); 
+			} 
+		); 
+	}
+);
+```
 
 
 API
