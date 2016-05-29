@@ -76,23 +76,25 @@ Call **addNegFeedback** method and pass a selector to the feedback button, a tex
 Default negative feedback item is grouped with the default positive feedback item. Clicking one of which will close off both options thereafter (explained above in positive feedback section).
 See API for more details of this call.
 ```javascript
-feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tell me more?', 500, 'Your feedback is well received!'); 
+feedback.addNegFeedback(
+	'#myFD', 'Standard dislike button', 
+	'Sorry about it, tell me more?', 500, 
+	'Your feedback is well received!'
+); 
 ```
 <img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/standard.gif"/>
 
 
 ### Creating a contact us feedback item with message box and a toast alert
-Call **addMsgFeedback** method and give a callback to define actions upon click. In this example, we make use of a native function to create the default message box and toast alerts.
+Call **addMsgFeedback** method and pass a selector to the feedback button, a text for the menu, the heading in message box, character limit for message box and the title to the toast.
 See API for more details of this call.
 ```javascript
-feedback.addMsgFeedback('#myFD', 'Message us', function() {
-		feedback.createMessageBox('#myFD', 'Thank you for helping us improve', 500, 
-			function(msg) { 
-				feedback.createNotification(msg, 'Your feedback is well received!'); 
-			} 
-		); 
-	}
-);
+feedback.addMsgFeedback(
+	'#myFD', 'Message us', 
+	'Thank you for helping us improve', 500, 
+	'Your feedback is well received!', 'Thanks', 
+	function(textboxmsg) { alert('You can call AJAX here with text box msg : ' + textboxmsg); } 
+); 
 ```
 
 
@@ -106,6 +108,24 @@ feedback.addItem('#myFD', 'check-circle-o', 'Some Text', 'grpName',
 					 function() { alert('customize your action here'); });
 ```
 <img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/customize.gif"/>
+
+
+
+### Grouping feedback items and removing them altogether
+Sometimes certain feedback choices are singular, meaning we expect users to choose only 1 out of multiple options.
+Use this group feature to tag certain options to groups, and then collectively remove all the rest when one of them is chosen.
+Tagging the item is done during definition, and removal is done by a callback to *feedback.removeItemsInSet*.
+See API for more details of this call.
+```javascript
+feedback.addItem('#myFDBlue', 'check-circle-o', 'Group your items, say this is "A"', 'A', 
+					 function() { alert('Click "Remove A" to remove A group of buttons.') });
+feedback.addItem('#myFDBlue', 'check-circle-o', 'Say this is "A" too', 'A', 
+					 function() { alert('Click "Remove A" to remove A group of buttons.') });
+feedback.addItem('#myFDBlue', 'trash', 'Remove "A"', 'A-rmv', 
+					 function() { feedback.removeItemsInSet('#myFDBlue', 'A') });
+```
+<img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/grpdemo.gif"/>
+
 
 
 API
@@ -153,7 +173,7 @@ feedback.addPosFeedback(
 ### addNegFeedback
 Adds new click item with Cross icon to feedback box. Generally used to receive a negative response that launches the default message box to receive additional inputs. Customize its callback for any actions neccessary to record this feedback.
 ```
-feedback.addNegFeedback(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle, notifyMsg, callback))
+feedback.addNegFeedback(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle, notifyMsg, callback)
 e				:		A feedback jQuery element or selector to it
 text			:		Text on feedback item
 msgboxTitle		:		Title on message box
@@ -172,18 +192,56 @@ feedback.addNegFeedback(
 ); 
 ```
 
-		* 		e : A feedback jQuery element or selector to it
-		* 		text : Message on the item
-		*		set : Allocate this item to a set name, you can then later delete all buttons in this set in a single function.
-		* 		callback : callback upon click on this item
-		*****************************************/
-		this. = function
-		this.addMsgFeedback = function(e, text, callback)
-		this.addItem = function(e, icon_code, text, set, callback)
+
+### addMsgFeedback
+Adds new click item with Mail icon to feedback box. Generally used to receive a neutral response that launches the default message box to receive additional inputs. Customize its callback for any actions neccessary to record this feedback.
+```
+feedback.addMsgFeedback(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle, notifyMsg, callback)
+e				:		A feedback jQuery element or selector to it
+text			:		Text on feedback item
+msgboxTitle		:		Title on message box
+msgBoxCharLimit	:		Character limit for input on message box
+notifyTitle		: 		Title on notification
+notifyMsg		:		Message on notification, leave it blank to repeat the input received on message box
+callback(msg) 	:		Callback to execute when "Send" button on message box is clicked. It will be given one parameter that is the text from textarea in message box.
+```
+Example
+```javascript
+feedback.addNegFeedback(
+	'#myFD', 'Standard dislike button', 
+	'Sorry about it, tell me more?', 500, 
+	'Your feedback is well received!', 'Thanks', 
+	function(textboxmsg) { alert('You can call AJAX here with text box msg : ' + textboxmsg); } 
+); 
+```
+
+
+### addItem
+Adds new generic click item to feedback box. You can customize its icon, text and callback actions upon click.
+```
+feedback.addItem(e, icon_code, text, set, callback)
+e				:		A feedback jQuery element or selector to it
+icon_code		:		Font-awesome code for an icon, excluding "fa-"
+text			:		Text on feedback item
+set				:		A set to classify this item with in this feedback box
+callback	 	:		Callback to execute when feedback item is clicked. No additional parameter is provided.
+```
+Example
+```javascript
+feedback.addItem(
+	'#myFD', 'check-circle-o', 'Some Text', 'grpName', 
+	function() { alert('customize your action here'); }
+);
+```
 		
-		/*****************************************
-		* Removes all items in set under given Feedback.
-		* 		e : A feedback jQuery element or selector to it
-		*		set : Removes all buttons in this set
-		*****************************************/
-		this.removeItemsInSet
+### removeItemsInSet
+Removes all items in set under the given Feedback instance.
+```
+feedback.removeItemsInSet(e, set)
+e				:		A feedback jQuery element or selector to it
+set				:		A set to classify this item with in this feedback box
+```
+Example
+```javascript
+feedback.removeItemsInSet('#myFD', 'grpName');
+```
