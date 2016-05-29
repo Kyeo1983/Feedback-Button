@@ -4,7 +4,7 @@ Feedback Button
 Quick and easy way to plug in a feedback button with customizable feedback menu items.
 Comes with it a default message box for text inputs and is able to take callbacks to handle feedback submission event.
 
-<img src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/standard.gif"/>
+<img style="height:300px; width:531px;" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/standard.gif"/>
 
 
 
