@@ -46,27 +46,32 @@ Set attributes to the &lt;div&gt; tag to configure the feedback button.
 
 
 
-Example
+Examples
 ======
 
 Below are some examples of the customizations you can do to the feedback button.
 These examples work off a sample feedback &lt;div&gt; tag with id="myFD" and assume that feedback._init() has been ran to initialize the plugin.
 
-Creating a positive feedback item with just a toast alert upon click.
+Creating a positive feedback item with just a toast alert upon click
 ------
 Call addPosFeedback method and pass a selector to the feedback button, a text for the menu, the message in toast upon click and the title to the toast.
+Default positive feedback item is grouped with the default negative feedback item. Clicking one of which will close off both options thereafter (nobody feedbacks positively and negatively at the same time right?).
+See API for more details of this call.
 ```javascript
 feedback.addPosFeedback('#myFD', 'Creating a normal positive button', 'Glad that you like it!', 'Thank you'); 
 ```
 <img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/addPosFeedback.gif"/>
 
 
-feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tell me more?', 500, 'Your feedback is well received!'); 
-
+Creating a positive feedback item with just a toast alert upon click
+------
+Call addNegFeedback method and pass a selector to the feedback button, a text for the menu, the heading in message box, character limit for message box and the title to the toast.
+Default negative feedback item is grouped with the default positive feedback item. Clicking one of which will close off both options thereafter (explained above in positive feedback section).
+See API for more details of this call.
 ```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
+feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tell me more?', 500, 'Your feedback is well received!'); 
 ```
+<img height="300px" width="531px" src="https://github.com/Kyeo1983/Feedback-Button/blob/master/sample/standard.gif"/>
 
 
 API
