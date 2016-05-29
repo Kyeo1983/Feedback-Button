@@ -19,12 +19,13 @@ Usage
 ======
 
 ### Getting Started
+You will need to import font-awesome for the use of icons in this plugin, get it <a href="http://fontawesome.io/" target="_blank">here</a>.
 Because this plugin makes use of <a href="http://fancybox.net/" target="_blank">FancyBox</a> and <a href="https://github.com/CodeSeven/toastr" target="_blank">Toastr</a> to create its default message box and notification, you have to first import these two plugins.
 Credits to the above sources for these tools.
 
 Next, import feedback.css and feedback.js for the base feedback content, 
-To start using it, add this HTML &lt;div&gt; to your page:     &lt;div class="feedback"&gt;&lt;/div&gt;
-And then run feedback._init() on Javascript.
+To start using it, add this HTML &lt;div&gt; to your page:     **&lt;div class="feedback"&gt;&lt;/div&gt;**
+And then run **feedback._init()** on Javascript.
 
 If you do not require the default message box nor notification feature, then just import feedback-plain.css and feedback-plain.js.
 
@@ -61,7 +62,7 @@ Below are some examples of the customizations you can do to the feedback button.
 These examples work off a sample feedback &lt;div&gt; tag with id="myFD" and assume that feedback._init() has been ran to initialize the plugin.
 
 ### Creating a positive feedback item with just a toast alert
-Call addPosFeedback method and pass a selector to the feedback button, a text for the menu, the message in toast upon click and the title to the toast.
+Call **addPosFeedback** method and pass a selector to the feedback button, a text for the menu, the message in toast upon click and the title to the toast.
 Default positive feedback item is grouped with the default negative feedback item. Clicking one of which will close off both options thereafter (nobody feedbacks positively and negatively at the same time right?).
 See API for more details of this call.
 ```javascript
@@ -71,7 +72,7 @@ feedback.addPosFeedback('#myFD', 'Creating a normal positive button', 'Glad that
 
 
 ### Creating a negative feedback item with message box and a toast alert
-Call addNegFeedback method and pass a selector to the feedback button, a text for the menu, the heading in message box, character limit for message box and the title to the toast.
+Call **addNegFeedback** method and pass a selector to the feedback button, a text for the menu, the heading in message box, character limit for message box and the title to the toast.
 Default negative feedback item is grouped with the default positive feedback item. Clicking one of which will close off both options thereafter (explained above in positive feedback section).
 See API for more details of this call.
 ```javascript
@@ -81,7 +82,7 @@ feedback.addNegFeedback('#myFD', 'Standard dislike button', 'Sorry about it, tel
 
 
 ### Creating a contact us feedback item with message box and a toast alert
-Call addMsgFeedback method and give a callback to define actions upon click. In this example, we make use of a native function to create the default message box and toast alerts.
+Call **addMsgFeedback** method and give a callback to define actions upon click. In this example, we make use of a native function to create the default message box and toast alerts.
 See API for more details of this call.
 ```javascript
 feedback.addMsgFeedback('#myFD', 'Message us', function() {
@@ -96,7 +97,7 @@ feedback.addMsgFeedback('#myFD', 'Message us', function() {
 
 
 ### Creating a customized feedback item and action
-Call generic addItem method. You can provide a font-awesome code for its icon and the text to appear on feedback box.
+Call generic **addItem** method. You can provide a font-awesome code for its icon and the text to appear on feedback box.
 Give it a group name if applicable, see example on groups to find out what they do.
 Finally provide a callback action for its click. In this example, we simply launch an alert with a message.
 See API for more details of this call.
@@ -108,4 +109,45 @@ feedback.addItem('#myFD', 'check-circle-o', 'Some Text', 'grpName',
 
 
 API
-===============
+=======
+
+*** createMessageBox
+Creates standard message box. Standard message box will remove all feedback items under set "main".
+The selector parameter "e" is needed only for this purpose, otherwise, it is ok to leave it blank.
+```
+createMessageBox = function(e, title, charlimit, callback) 
+
+e 				:		A feedback jQuery element or selector to it
+title 			: 		Title of this message box
+charlimit 		:		Character limit of the text area in this box
+callback(msg) 	:		Callback to execute when Send button is clicked, it will be given one parameter that is the text from textarea in message box. 
+```
+
+		
+		
+		/**********************************************
+		* Creates a popup box showing message
+		* 		msg : Message to show
+		* 		title : Title of this message
+		***********************************************/
+		this.createNotification = function(msg, title)
+		
+		
+		/*****************************************
+		* Adds new click item with Tick/Cross/Mail icon to feedback box.
+		* 		e : A feedback jQuery element or selector to it
+		* 		text : Message on the item
+		*		set : Allocate this item to a set name, you can then later delete all buttons in this set in a single function.
+		* 		callback : callback upon click on this item
+		*****************************************/
+		this.addPosFeedback = function(e, text, msg, title)
+		this.addNegFeedback = function(e, text, msgboxTitle, msgBoxCharLimit, notifyTitle)
+		this.addMsgFeedback = function(e, text, callback)
+		this.addItem = function(e, icon_code, text, set, callback)
+		
+		/*****************************************
+		* Removes all items in set under given Feedback.
+		* 		e : A feedback jQuery element or selector to it
+		*		set : Removes all buttons in this set
+		*****************************************/
+		this.removeItemsInSet
